@@ -1,0 +1,32 @@
+.affairDiv {
+    margin: 0.2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-between;
+    color: darkslategray;
+}
+
+.n {
+    font-weight: bold;
+    margin-right: 2rem;
+}
+
+.high {
+    justify-self: center;
+    font-weight: bolder;
+    color: crimson;
+}
+.middle {
+    justify-self: center;
+    font-weight: normal;
+    color: goldenrod;
+}
+.low {
+    justify-self: center;
+    font-weight: lighter;
+    color: darkslategray;
+}
+.b {
+    justify-self: end;
+
+}

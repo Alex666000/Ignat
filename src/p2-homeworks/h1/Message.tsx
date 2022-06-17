@@ -13,7 +13,6 @@ const Message: React.FC<MessagePropsType> = (props) => {
         <div className={s.message}>
             {/*//аватарка*/}
             <img className={s.avatar} src={props.avatar} alt="photo"/>
-
             {/*уголок*/}
             <div className={s.angle}></div>
 

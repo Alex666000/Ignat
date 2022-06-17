@@ -1,3 +1,10 @@
-.someClass {
-
+.affairsDiv {
+    display: grid;
+    grid-template-rows: repeat(1, 1fr);
+    max-width: max-content;
+    justify-self: center;
 }
+.buttonsDiv {
+    justify-self: center;
+}
+

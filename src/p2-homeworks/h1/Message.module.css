@@ -2,7 +2,6 @@
     display: flex;
     align-items: flex-end;
     margin: 10px;
-
 }
 
 .avatar {
@@ -19,15 +18,22 @@
 .angle {
     width: 15px;
     height: 15px;
-    background: radial-gradient(circle at 0 0, rgba(255,255,255,0.3) 0);
+    background: radial-gradient(circle at 0 0, rgba(0,0,0,0) 15px, rgba(255,255,255,0.3) 0);
 }
 .text {
     max-width: 150px;
     max-height: 300px;
+    word-wrap: break-word;
 
 }
 .name {
     font-size: 20px;
     font-weight: bold;
-    color: greenyellow;
+    color: #bbffbb;
+}
+
+.time {
+    display: flex;
+    justify-content: flex-end;
+    color: #bbffbb;
 }
