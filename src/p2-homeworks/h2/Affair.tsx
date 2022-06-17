@@ -10,7 +10,11 @@ type AffairPropsType = {
 }
 
 function Affair(props: AffairPropsType) {
-    const deleteCallback = (_id: number) => {props.deleteAffairCallback(_id)}// need to fix
+    // вызываем callback и кидаем id, чтобы удалить одно дело affair:
+    const deleteCallback = (_id: number) => {
+        props.deleteAffairCallback(_id)
+    }// need to fix
+// style:
     const style = props.affair.priority === 'high'
         ? s.high : props.affair.priority === 'middle'
             ? s.middle : props.affair.priority === 'low'
@@ -19,8 +23,8 @@ function Affair(props: AffairPropsType) {
         <div className={s.affairDiv}>
             <div className={s.n}>{props.affair.name}</div>
             <div className={style}>{props.affair.priority}</div>
-
-            <SuperButton className={s.b} red onClick={()=>deleteCallback(props.affair._id)}>X</SuperButton>
+            {/*на клик по кнопке удаляем таску*/}
+            <button className={s.b} onClick={() => deleteCallback(props.affair._id)}>X</button>
         </div>
     )
 }

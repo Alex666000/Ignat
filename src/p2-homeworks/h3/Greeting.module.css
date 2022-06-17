@@ -1,7 +1,45 @@
-.someClass {
-
+.mainDiv {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
 }
 
-.error {
-    border: 1px solid red;
+
+.totalUsersSpan {
+    color: snow;
+    border-radius: 100px;
+    width: 20px;
+    height: 20px;
+    background-color: cornflowerblue;
+    margin: 1rem;
+    font-weight: bold;
+    color: gray(42);
 }
+/*}*/
+/*.errorButton {*/
+/*    display: inline-flex;*/
+/*    border: crimson 1px solid;*/
+/*    border-radius: 0 20px 20px 0;*/
+/*}*/
+/*.normButton {*/
+/*    border: #007344 1px solid;*/
+/*    border-radius: 0 20px 20px 0;*/
+/*}*/
+
+/*.someClass {*/
+/*    border-radius: 20px 0 0 20px;*/
+/*    padding-left: 1rem;*/
+/*    border: #007344 1px solid;*/
+/*}*/
+
+/*.error {*/
+/*    border: 1px solid crimson;*/
+/*    border-radius: 20px 0 0 20px;*/
+/*    padding-left: 1rem;*/
+/*}*/
+/*.errorText {*/
+/*    flex-direction: column;*/
+/*    color: crimson;*/
+/*    text-shadow: crimson;*/
+/*}*/

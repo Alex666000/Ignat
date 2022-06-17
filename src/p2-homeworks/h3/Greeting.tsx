@@ -1,26 +1,41 @@
-import React from 'react'
+import React, {ChangeEvent, KeyboardEvent} from 'react'
 import s from './Greeting.module.css'
+import SuperInputText from '../h4/common/c1-SuperInputText/SuperInputText';
+import SuperButton from '../h4/common/c2-SuperButton/SuperButton';
 
 type GreetingPropsType = {
-    name: any // need to fix any
-    setNameCallback: any // need to fix any
-    addUser: any // need to fix any
-    error: any // need to fix any
-    totalUsers: any // need to fix any
+    name: string // need to fix any
+    setNameCallback: (e: ChangeEvent<HTMLInputElement>) => void // need to fix any
+    addUser: () => void // need to fix any
+    error: string // need to fix any
+    totalUsers: number // need to fix any
+    onEnterPressUpCallBack: (e: KeyboardEvent<HTMLInputElement>)=>void
 }
 
 // презентационная компонента (для верстальщика)
 const Greeting: React.FC<GreetingPropsType> = (
-    {name, setNameCallback, addUser, error, totalUsers} // деструктуризация пропсов
+    {name, setNameCallback, addUser, error, totalUsers, onEnterPressUpCallBack} // деструктуризация пропсов
 ) => {
-    const inputClass = s.error // need to fix with (?:)
+    // стили ошибок для input и button:
+    const inputClass = error !== '' && name == '' ? s.error : s.someClass// need to fix with (?:)
+    const buttonClass = error !== '' ? s.errorButton : s.normButton
 
     return (
-        <div>
-            <input value={name} onChange={setNameCallback} className={inputClass}/>
-            <span>{error}</span>
-            <button onClick={addUser}>add</button>
-            <span>{totalUsers}</span>
+        <div className={s.mainDiv}>
+            <SuperInputText
+                error={error}
+                onKeyPress={onEnterPressUpCallBack}
+                value={name}
+                onChange={setNameCallback}
+                className={inputClass}/>
+            {/* если есть ошибка у input*/}
+            {error === '' && name.match(/\w/)
+
+                ? <SuperButton className={buttonClass} onClick={addUser}>add</SuperButton>
+                : <SuperButton className={buttonClass} disabled={true}>Enter valid name</SuperButton>
+            }
+            {/*span с кол-вом users*/}
+            <span className={s.totalUsersSpan}>{totalUsers}</span>
         </div>
     )
 }

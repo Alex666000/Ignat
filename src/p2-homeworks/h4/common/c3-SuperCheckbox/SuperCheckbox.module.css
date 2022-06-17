@@ -1,7 +1,9 @@
 .checkbox {
+    /*accent-color: #1A1A1A;*/
+    accent-color: darkslategray;
 
 }
 
 .spanClassName {
-
+    font-weight: bold;
 }
