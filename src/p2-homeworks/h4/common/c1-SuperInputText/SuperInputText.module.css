@@ -1,3 +1,8 @@
+.input:focus {
+    outline: none;
+    bottom: #99ff99;
+}
+
 .superInput {
     outline: none;
     width: 20%;

@@ -1,51 +1,81 @@
-/* кнопка по умолчанию*/
+@keyframes blink {
+    0% {
+        left: -130%;
+    }
+    100% {
+        left: 130%;
+    }
+}
 .default {
-    border-color: #3498db;
-    color: #fff;
-    box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
-    -webkit-transition: all 150ms ease-in-out;
-    transition: all 150ms ease-in-out;
-}
-
-.default:disabled {
-    pointer-events: none;
-    opacity: 80%;
-    background-color: darkgrey;
-}
-
-.default:hover {
-    box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
-    color: black;
-}
-
-.default:active {
-    box-shadow: none;
-    transform: translateY(0);
-}
-/*кнопка красная*/
-.red {
-    appearance: none;
-    background-color: transparent;
-    border: 1px solid crimson;
-    border-radius: 5px;
-    color: crimson;
-    cursor: pointer;
-    font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 16px;
-    font-weight: 600;
+    background: #003300;
+    color: #99ff99;
     outline: none;
-    text-decoration: none;
-    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    min-width: min-content;
-    max-width: max-content;
-    will-change: transform;
 }
-.red:hover {
-    color: crimson;
-    background-color: rgba(250,209,192,0.5);
-    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-    transform: translateY(-2px);
+.red {
+    background: #dd3355;
+}
+.button {
+    position: relative;
+    margin: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.button:after {
+    display: block;
+    content: '';
+    position: absolute;
+
+    left: -130%;
+    top: 0;
+    height: 100%;
+    width: 20%;
+
+    transform: skew(45deg);
+    background-color: #ffffff;
+    opacity: 0.7;
+    z-index: 14;
+}
+
+.button:hover::after {
+    animation: blink 0.35s ease;
+}
+
+.button:hover::before {
+    display: block;
+    content: '';
+    position: absolute;
+
+    left: -100vw;
+    top: 0;
+    height: 100vh;
+    width: 300vw;
+
+    background-color: #ffffff;
+    opacity: .2;
+
+    z-index: 7;
+
+}
+
+.button:focus {
+    outline: #99ff99 solid 1px;
+
+}
+
+.button:active {
+    background: #99ff99 ;
+}
+
+.button:disabled {
+    color: #006500;
+    cursor: auto;
+}
+
+.button:disabled::after {
+    z-index: -1;
+}
+
+.button:disabled::before {
+    z-index: -1;
 }
