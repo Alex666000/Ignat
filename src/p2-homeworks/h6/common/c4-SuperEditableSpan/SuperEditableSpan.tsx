@@ -1,20 +1,20 @@
 import React, {DetailedHTMLProps, InputHTMLAttributes, HTMLAttributes, useState} from 'react'
 import SuperInputText from '../../../h4/common/c1-SuperInputText/SuperInputText'
-
 // тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
-// тип пропсов обычного спана
+// тип пропсов обычного span дефолтного
 type DefaultSpanPropsType = DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>
 
-// здесь мы говорим что у нашего инпута будут такие же пропсы как у обычного инпута
+// здесь мы говорим что у нашего input будут такие же пропсы как у обычного input
 // (чтоб не писать value: string, onChange: ...; они уже все описаны в DefaultInputPropsType)
 type SuperEditableSpanType = DefaultInputPropsType & { // и + ещё пропсы которых нет в стандартном инпуте
     onChangeText?: (value: string) => void
     onEnter?: () => void
     error?: string
     spanClassName?: string
-
-    spanProps?: DefaultSpanPropsType // пропсы для спана
+// пропсы для span
+    spanProps?: DefaultSpanPropsType
+    // пропсы для спана -"необязательныe пропсы" для того, чтобы определить как span будет отрисовываться
 }
 
 const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
@@ -35,23 +35,27 @@ const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
 
         onEnter && onEnter()
     }
+    // когда кликаем за пределы input или внутри него кликаем Enter:
     const onBlurCallback = (e: React.FocusEvent<HTMLInputElement>) => {
         // setEditMode() // выключить editMode при нажатии за пределами инпута
 
         onBlur && onBlur(e)
     }
+    // на двойной клик либо 1, либо вторую функцию вызываем:
     const onDoubleClickCallBack = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
         // setEditMode() // включить editMode при двойном клике
+        // fix
 
         onDoubleClick && onDoubleClick(e)
     }
 
-    const spanClassName = `${'сделать красивый стиль для спана'} ${className}`
+    const spanClassName = `${'сделать красивый стиль для спана'} ${className}` // fix - карандашек...
 
     return (
         <>
             {editMode
                 ? (
+                    // Проанализировать его изнутри - использует "SuperInputText"
                     <SuperInputText
                         autoFocus // пропсу с булевым значением не обязательно указывать true
                         onBlur={onBlurCallback}
@@ -76,3 +80,9 @@ const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
 }
 
 export default SuperEditableSpan
+/*
+    spanProps?: DefaultSpanPropsType // пропсы для  SPAN -"необязательны пропс" - поэтому в "деструкктуризации"
+    пропишем spanProps || {} -ЕСЛИ ПРОПСОВ У СПАНА НЕ БУДЕТ ПОДСУНЕМ ПУСТОЙ ОБЪЕКТ
+    т.к у undefined если будет брать какие-то свойства то приложение упадет - сайт ляжет
+
+ */

@@ -7,11 +7,7 @@ import HW4 from '../../h4/HW4'
 export function Junior() {
     return (
         <div>
-            <HW1/>
-            <HW2/>
-            <HW3/>
-            <HW4/>
-            {/*<HW6/>*/}
+            Junior
         </div>
     )
 }
