@@ -20,7 +20,7 @@ export function restoreState<T>(key: string, defaultState: T) {
 }
 
 // пример использования и работы функции saveState:
-type StateType = {
+export type StateType = {
     x: string
     y: number
 }
@@ -33,8 +33,5 @@ const state: StateType = restoreState<StateType>('test', {x: '', y: 0})
 
 
 /*
-1 - Стандартный local storage сохраняет только строки - тут универсальная функция для любых данных (более сложных объектов) export function saveState<T>(key: string, state: T) {
-const stateAsString = JSON.stringify(state)
-localStorage.setItem(key, stateAsString)
-}
+1 - Стандартный local storage сохраняет только строки - тут универсальная функция для любых данных (более сложных объектов)
  */

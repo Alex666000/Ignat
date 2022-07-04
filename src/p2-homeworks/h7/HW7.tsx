@@ -11,7 +11,6 @@ function HW7() {
         <div>
             <hr/>
             homeworks 7
-
             {/*should work (должно работать)*/}
             <div>
                 <SuperSelect
@@ -39,3 +38,7 @@ function HW7() {
 }
 
 export default HW7
+
+/*
+Селект и Радио - работают синхронно на одном useState: если селект выбран то выберется и чекбокс
+ */
