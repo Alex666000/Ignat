@@ -1,4 +1,5 @@
 import React, {SelectHTMLAttributes, DetailedHTMLProps, ChangeEvent} from 'react'
+import s from './SuperSelect.module.css'
 
 type DefaultSelectPropsType = DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>
 type SuperSelectPropsType = DefaultSelectPropsType & {
@@ -13,27 +14,26 @@ const SuperSelect: React.FC<SuperSelectPropsType> = (
         ...restProps
     }
 ) => {
-    const mappedOptions: any[] = options ? options.map((o, i) =>
-        ( //  FIX ----------- "замапить" options with key
-            <label key={i}>
-                <input
-                    type={'select'}
-                    name={'select'}
-                    checked={true}
-                    value={o.value}
-                    onChange={o.onChangeOption}
-                />
+    const mappedOptions: any[] = options
+        ? options.map((o, i) =>
+        (<option key={o + '-' + i}
+                className={s.option}
+                 value={o}>
                 {o}
-            </label>
-        )) : []
+            </option>
+        ))
+        : []
 
     const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>) => {
-        onChange      // если есть пропс onChange -- onChange - работает с работает с value;
-        && onChangeOption(arr)     // onChangeOption - показывает какой option выбран в радио-группе---event_ом
+        // onChange onChangeOption
+        onChange && onChange(e)
+        onChangeOption && onChangeOption(e.currentTarget.value)
     }
 
+    // const finalSelectClassName = s.select + (className ? '' + className : '')
+
     return (
-        <select onChange={onChangeCallback} {...restProps}>
+        <select /*className={finalSelectClassName}*/ onChange={onChangeCallback} {...restProps}>
             {mappedOptions}
         </select>
     )
